@@ -1,0 +1,74 @@
+.summaryModalButtonConfirm {
+	padding: 20px 5% 30px 0px !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center !important;
+}
+.sumContainer {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
+}
+.rowContainer {
+	background-color: white;
+	/* width: 1024px; */
+}
+.tableContainer {
+	width: 95%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+}
+.summaryContainer {
+	/* margin-top: 10px; */
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.title {
+	font-weight: 500;
+	font-size: 30px;
+	line-height: 35px;
+}
+.totalCard {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(0.8em + 0.3vw);
+	line-height: 21px;
+}
+.totalAmmount {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.totalText {
+	font-weight: bold;
+	font-size: calc(1em + 1vw);
+	line-height: 49px;
+	color: black;
+}
+.totalSubText {
+	font-weight: bold;
+	font-size: calc(0.8em + 0.3vw);
+	line-height: 21px;
+	color: black;
+}
+.black {
+	color: black;
+}
+.summaryNoBorder {
+	border: none;
+	padding: 2% 2%;
+	text-align: justify;
+}
+
+.tableCol {
+	padding: 1% 1%;
+	background-color: white;
+}

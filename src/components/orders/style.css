@@ -1,0 +1,6 @@
+.usertbl .ant-table-tbody > tr.ant-table-placeholder {
+    height: calc(100vh - 292px);
+}
+.usertbl .ant-table table {
+    height: calc(100vh - 292px) !important;
+}

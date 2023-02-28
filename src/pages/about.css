@@ -1,0 +1,51 @@
+.aboutContainer {
+  margin-top: 100px;
+}
+.aboutTitles {
+  margin-left: 30px;
+  width: 450px;
+  border-bottom: 4px solid #e45a00;
+  font-size: 45px;
+}
+.aboutParagraphs {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 50px;
+  transform: scale(0.8) !important;
+
+  /* or 143% */
+
+  text-align: justify;
+  letter-spacing: -0.015em;
+
+  color: #000000;
+}
+/* On screens that are 1024px or less */
+@media screen and (max-width: 1024px) {
+  .aboutContainer {
+    transform: scale(0.8) !important;
+    margin-top: -40px !important;
+  }
+  .aboutParagraphs {
+    font-size: 25px !important;
+  }
+  .aboutImages {
+    height: 250px !important;
+  }
+}
+
+/* On screens that are 600 or less */
+@media screen and (max-width: 600px) {
+  .aboutRow {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+  }
+  .aboutTitles {
+    font-size: 25px !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}

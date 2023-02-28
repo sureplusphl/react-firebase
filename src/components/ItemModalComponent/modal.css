@@ -1,0 +1,357 @@
+.modalBody {
+  width: 867px;
+}
+
+/* overide ant modal styles */
+.modalBody .ant-modal-body {
+  padding: 0px !important;
+  font-size: 14px;
+  line-height: 1.5715;
+  box-shadow: 0px 4px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  height: auto;
+}
+
+.modalBody .ant-modal-content {
+  border-radius: 20px;
+}
+
+.modalBodyContainer {
+  background-color: #e5f3da;
+  /* height: 500px; */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.categoryTitleContainer {
+  justify-content: left;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.categoryTitle {
+  font-size: calc(1.3em + 1.5vw);
+  align-self: flex-end;
+  font-family: Tangerine;
+  font-weight: bold;
+  /* width: 500px; */
+  margin-left: 30px;
+  margin-top: 20px;
+  line-height: normal;
+}
+.detailsColContainer {
+  min-height: 400px;
+  background-color: white;
+  border-top-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+  display: flex;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+.imageColContainer {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+}
+.imageBackgroundContainer {
+  height: 340px;
+  width: 340px;
+  background-color: white;
+  border-radius: 50%;
+  border: 50px solid rgb(255, 255, 255);
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 4px;
+}
+.imageModalContainer {
+  height: 320px;
+  width: 340px;
+  background-color: green;
+  border-radius: 50%;
+  border: 5px solid rgb(255, 255, 255);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+.itemTitle {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 47px;
+  text-align: center;
+  letter-spacing: 0.15em;
+  color: #000000;
+  margin-top: 24px;
+}
+
+.itemDescription {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #000000;
+}
+
+.detailsContainer {
+  padding: 30px;
+  height: auto;
+  width: -webkit-fill-available;
+}
+
+.detailsButton {
+  padding: 3%;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 5px;
+  min-width: 300px;
+  background: #e5f3da;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 16px;
+  text-align: center;
+}
+
+.buttonCol {
+  justify-content: center;
+  display: flex;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.modalProductQuantity {
+  padding: 10px;
+}
+
+.ant-input-group-wrapper {
+  display: inline-block;
+  width: 50%;
+  text-align: start;
+  vertical-align: top;
+  margin-top: 30px;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  width: 250px;
+  height: 41px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.summaryBtnRight {
+  border: none;
+  border-left: 0.5px solid rgba(0, 0, 0, 0.25);;
+}
+
+.summaryBtnLeft {
+  border: none;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.25);;
+}
+
+.counterSummary {
+  border: none;
+  display: flex;
+  justify-content: center;
+  width: 130px;
+  height: 34px;
+  background: #ffffff;
+  border: 0.5px solid rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+.counterSummary:focus {
+  background: #ffffff;
+  /* border: 0.5px solid rgba(0, 0, 0, 0.25); */
+  border-radius: 5px;
+}
+.counterSummary:hover {
+  background: #ffffff;
+  /* border: 0.5px solid rgba(0, 0, 0, 0.25); */
+  border-radius: 5px;
+}
+/* COOKED FOOD STYLES */
+
+.foodModalBodyContainer {
+  background-color: white;
+}
+.counterCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.counterButton {
+  background-color: transparent;
+  border: none;
+}
+
+.counterButton {
+  background-color: transparent;
+  border: none;
+}
+
+.counterValue {
+  border-left: 1px solid rgb(205, 205, 205);
+  border-right: 1px solid rgb(205, 205, 205);
+  border-top: none;
+  border-bottom: none;
+}
+
+.modalLogo {
+  width: 25%;
+  margin-left: 8%;
+  margin-top: 37px;
+}
+
+.modalAvatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.modalAvatar2 {
+  height: 50%;
+  width: 50%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Notes styles */
+.notesItemTitle {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 47px;
+  text-align: left;
+  letter-spacing: 0.15em;
+  color: #000000;
+  margin-top: 20px;
+}
+
+.notesItemDescription {
+  display: flex;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: start;
+  color: #000000;
+}
+
+.noteDetailsButton {
+  padding: 3%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 5px;
+  min-width: 250px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  font-size: 16px;
+}
+
+.notesModalBodyContainer {
+  background-color: #e5f3da;
+  /* height: 400px; */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.notesSteps {
+  /* height: 400px; */
+  background-color: white;
+  /* z-index: 10; */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.noteStepsTitle {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 47px;
+  /* identical to box height */
+
+  text-align: left;
+  letter-spacing: 0.05em;
+}
+
+.noteStepsSubText {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.notesModalLogo {
+  width: 135px;
+  margin: 40px;
+}
+
+.notesImageModalContainer {
+  margin-bottom: 35px;
+  height: 380px;
+  width: 380px;
+  background-color: green;
+  border-radius: 50%;
+  border: 5px solid rgb(255, 255, 255);
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 4px;
+}
+
+.notesImageColContainer {
+  justify-content: center;
+  display: flex;
+  align-items: flex-end;
+  /* height: 350px; */
+  min-height: 350px;
+}
+
+/* Ingredients css */
+
+.ingNotesSteps {
+  /* height: 400px; */
+  background-color: white;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
+  position: absolute;
+}
+
+.ingContainer {
+  width: 424px;
+  height: 201px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.ingColContainer {
+  justify-content: center;
+  display: flex;
+  height: 450px;
+}
+
+.buttonContainer.notesAddMinus .counter {
+  width: 200px;
+}

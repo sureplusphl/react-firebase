@@ -1,0 +1,74 @@
+.content {
+  width: 100%;
+  margin-top: 20px;
+}
+.homeCarousel {
+  width: 100%;
+}
+.container {
+  margin: 64px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  width: 90%;
+}
+.storeTitle {
+  text-align: left;
+  font-size: 20px !important;
+  /* margin-left: 15% !important; */
+}
+.card {
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 60px;
+  background: #ececec;
+  border-radius: 14px;
+  width: 240px;
+  height: 226px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+.cardImg {
+  height: 157px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+.cardDescription {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+
+  font-size: 1rem;
+  padding-top: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.arrow {
+  color: #fd6a02;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* On screens that are 768px or less */
+@media screen and (max-width: 768px) {
+  .storeTitle {
+    /* margin: 64px 10px !important; */
+    /* margin-left: 10% !important; */
+  }
+  .card {
+    transform: scale(0.8);
+  }
+}
+
+/* On screens that are 1230px or less */
+@media screen and (min-width: 1330px) {
+  .storeTitle {
+    /* margin: 64px 10px !important; */
+    /* margin-left: 10% !important; */
+  }
+}

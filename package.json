@@ -1,0 +1,58 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^4.2.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.1.2",
+    "compression-webpack-plugin": "^4.0.0",
+    "email-validator": "^2.0.4",
+    "firebase": "^7.14.0",
+    "firebaseui": "^4.5.0",
+    "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.28",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "radium": "^0.26.0",
+    "randomstring": "^1.1.5",
+    "react": "^17.0.2",
+    "react-animations": "^1.0.0",
+    "react-beforeunload": "^2.1.0",
+    "react-dom": "^17.0.2",
+    "react-horizontal-scrolling-menu": "^0.7.7",
+    "react-lazyload": "^3.2.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-snap": "^1.23.0",
+    "redux": "^4.1.0",
+    "rxjs": "^6.5.5",
+    "sweetalert2": "^9.10.13",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "uuid": "^7.0.3",
+    "video-react": "^0.14.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+.notesCol {
+  background-color: white;
+  padding: 20px;
+}
+.notesContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.notesRow {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.infoContainer {
+  margin-top: 10px;
+}
+
+.infoCol {
+  padding: 25px;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 18px;
+  color: #000000;
+  text-align: justify;
+}
+
+.notesTextContainer {
+  height: 100px !important;
+}
+
+.hidden { display:none; }
+.cblue { color: blue;}
+
+.bankdiv .ant-form-item-control-input-content {
+  display: unset;
+}
+.banksinglediv {
+  display: inline-table;
+}

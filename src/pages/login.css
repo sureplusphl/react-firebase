@@ -1,0 +1,66 @@
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    float: right;
+  }
+  #components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+    float: left;
+  }
+  #components-form-demo-normal-login .login-form-button {
+    width: 100%;
+  }
+  
+  .ant-form-item-control-input-content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .ant-input-affix-wrapper {
+    height: 50px;
+    border-radius: 20px;
+    /* margin: 19px; */
+    width: 75%;
+  }
+  
+  .reg-FormContainer {
+    margin-top: 50px;
+  }
+  
+  .loginButton {
+    height: 50px;
+    border-radius: 20px;
+    /* margin: 19px; */
+    width: 75%;
+    background-color: #3b5998;
+    color: white;
+    font-size: 20px;
+    border-color: transparent;
+  }
+  
+  .loginButton:hover {
+    height: 50px;
+    border-radius: 20px;
+    width: 75%;
+    background-color: #233a6b;
+    color: white;
+    font-size: 25px;
+    border-color: transparent;
+  }
+  
+  /* overide and css */
+  .ant-btn-primary:hover, .ant-btn-primary:focus {
+    color: #fff;
+    background: #233a6b;
+    border-color: #233a6b;
+  }
+  
+  .ant-form-item-has-error .ant-form-item-explain, .ant-form-item-has-error .ant-form-item-split {
+    color: #ff4d4f;
+    display: flex;
+    justify-content: center;
+  }
+
+  .site-form-item-icon {
+    vertical-align: -0.69em;
+  }

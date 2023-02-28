@@ -1,0 +1,137 @@
+.has-quantity {
+    background-color: #f1fbec;
+  }
+  
+  .has-quantity .ant-card-actions {
+    background-color: #f1fbec;
+  }
+  
+  .cardContainer {
+    width: 100%;
+    max-width: 272px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    height: auto;
+  }
+  
+  .imageCard {
+    width: 210px;
+    top: -100px;
+    border-radius: 10px;
+    height: 170px;
+    left: 14px;
+  }
+  
+  .imageCard2 {
+    margin-top: -100px;
+    justify-content: center;
+  }
+  
+  .imageContainer {
+    /* margin-left: 24px;
+    margin-right: 24px; */
+    background-color: white;
+    width: 190px;
+    height: 170px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  }
+  
+  .avatar {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .no-other-price {
+    height: auto !important;
+  }
+  
+  .productNameText {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: #000000;
+    margin-top: 20px;
+    height: 35px;
+  }
+  
+  .descriptionText {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    padding: 0px 10px;
+    margin-bottom: 5px;
+    min-height: 50px;
+  }
+  
+  .othersPrice {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    margin: 10px 0 0px 0;
+    min-height: 50px;
+  }
+  
+  .productRateText {
+    text-align: center;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 18px;
+    color: #000000;
+    padding: 15px 0px;
+    background: rgba(135, 177, 68, 0.4);
+  }
+  
+  .stocksLeft {
+    text-align: center;
+  }
+  
+  .quantityDisplay {
+    font-size: 16px;
+    /* padding: 10px 20px 10px 20px; */
+    vertical-align: top;
+    color: black;
+    background-color: white;
+    margin: 12px;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+  
+  .soldOutText {
+    font-size: 18px;
+    padding: 4px;
+    margin: 7px;
+  }
+  
+  .stockTag {
+    margin: 10px;
+    /* background: rgba(135, 177, 68, 0.27); */
+    /* border: 0.5px solid #87b144; */
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #598d07;
+  }
+  
+  .summaryStockTag {
+    height: 30px;
+    background: rgba(135, 177, 68, 0.5);
+    border: 2px solid #87b144;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  
+  .summaryStockText {
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+  }
+  

@@ -1,0 +1,39 @@
+.justifyText {
+  text-align: justify;
+  font-size: 12px;
+  padding: 5% 7%;
+}
+.title {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  flex-direction: column;
+  align-items: center;
+}
+.rowContainer {
+  background-color: white;
+  /* width: 1024px; */
+}
+
+.agreementContainer {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summaryContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.agreementRow {
+  display: flex;
+  justify-content: center;
+}
