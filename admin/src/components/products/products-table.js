@@ -5,6 +5,7 @@ import { FirebaseContext } from "../../shared/contexts/firebase.context";
 import { AuthContext } from "../../shared/contexts/auth.context";
 import ProductForm from "./product-form";
 import ProductAdd from "./product-add";
+import { SearchOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -23,7 +24,12 @@ const OrderTable = () => {
     fetchProducts,
     // handleOnClickRow
   } = useContext(ProductsContext);
-
+  const searchStyle = {
+    display: "flex",
+    width: "100%",
+    margin: "auto 0",
+    justifyContent: "flex-end",
+  };
   useEffect(() => {
     fetchCategories();
     fetchProducts();
@@ -76,14 +82,14 @@ const OrderTable = () => {
     <div>
       <ProductForm />
       <h1>Product List</h1>
-      <Row gutter={10}>
-        <Col xs={18} sm={18} md={18} lg={3} xl={3}>
+      <Row gutter={[8, 16]}>
+        <Col xs={12} sm={12} md={12} lg={9} xl={9}>
           <ProductAdd />
         </Col>
-        <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+        <Col xs={12} sm={12} md={12} lg={6} xl={6}>
           {(userInfoRole == "reseller" && (
             <Select
-              style={{ width: 200 }}
+              style={{ width: "100%" }}
               placeholder="Choose Store"
               onChange={handleCategoryChanged}
               defaultValue={String(userInfoStore)}
@@ -99,7 +105,7 @@ const OrderTable = () => {
             </Select>
           )) || (
             <Select
-              style={{ width: 200 }}
+              style={{ width: "100%" }}
               placeholder="Choose Store"
               onChange={handleCategoryChanged}
               defaultValue="All"
@@ -115,24 +121,25 @@ const OrderTable = () => {
             </Select>
           )}
         </Col>
-        <Col xs={24} sm={24} md={24} lg={9} xl={9} offset={6}>
-          <Form layout="inline" form={form} onFinish={searchForm}>
-            <Form.Item name="name">
+        <Col xs={24} sm={24} md={24} lg={9} xl={9}>
+          <Form style={searchStyle} form={form} onFinish={searchForm}>
+            <Form.Item name="name" style={{ width: "100%" }}>
               <Input placeholder="Product Name" />
             </Form.Item>
-
-            <Form.Item>
+            <Form.Item name="name">
               <Button type="primary" htmlType="submit">
-                Search Product
+                <SearchOutlined />
               </Button>
             </Form.Item>
           </Form>
         </Col>
+
         <div
           className="ant-divider ant-divider-horizontal"
           role="separator"
         ></div>
       </Row>
+
       <Table
         columns={columns}
         rowClassName={(record, index) =>

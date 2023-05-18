@@ -71,7 +71,7 @@ function App() {
                 >
                   <Content
                     className="site-layout-background"
-                    style={{ padding: "24px", minHeight: 280 }}
+                    style={{ padding: "24px", minHeight: 580 }}
                   >
                     <Routing />
                   </Content>
