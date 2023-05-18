@@ -54,7 +54,7 @@ function App() {
                     height: 64,
                   }}
                 />
-                <div className="logo">
+                {/* <div className="logo">
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/announcements%2FSureplus%20Logo%20clear.png?alt=media&token=c369ffa5-f6b9-4d28-a88e-e55b56b31b5d"
                     alt=""
@@ -62,7 +62,7 @@ function App() {
                     height="50px"
                     style={{ marginTop: "-7px" }}
                   />
-                </div>
+                </div> */}
               </Header>
               <Content style={{ margin: "24px 16px 0" }}>
                 <Layout
