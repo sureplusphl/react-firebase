@@ -66,7 +66,8 @@ const OrderProvider = ({ children }) => {
           // "Preferred Bank": order.prefer_bank,
           "Total Goods (Php)": order.total_goods,
           "Total Weight (Kg)": order.total_kilos,
-          "Delivery Cost based on weight (Php)": order.total_goods > 1000 ? 0 : order.total_shipping,
+          "Delivery Cost based on weight (Php)":
+            order.total_goods > 1000 ? 0 : order.total_shipping,
           Discount: order.total_goods < 1000 ? 0 : 0,
           "Total Cost (Php)":
             order.total_goods < 1000
@@ -101,7 +102,9 @@ const OrderProvider = ({ children }) => {
           })) ||
         [];
       // ordersArray = _.sortBy(ordersArray, ["ordered_at"], ["desc"]);
-      ordersArray = ordersArray.sort((a, b) => new Date(b.ordered_at) - new Date(a.ordered_at));
+      ordersArray = ordersArray.sort(
+        (a, b) => new Date(b.ordered_at) - new Date(a.ordered_at)
+      );
       setOrders(ordersArray);
     });
   };
@@ -217,6 +220,7 @@ const OrderProvider = ({ children }) => {
     {
       title: "Date of order",
       dataIndex: "ordered_at",
+      width: "140px",
       key: "ordered_at",
       sortBy: "asc",
       render: (text) => {

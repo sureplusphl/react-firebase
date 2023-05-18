@@ -25,7 +25,7 @@
   },
   "scripts": {
     "postbuild": "gzip -k build/static/*/*.js && gzip -k build/static/*/*.css",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

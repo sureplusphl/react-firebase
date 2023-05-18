@@ -301,6 +301,7 @@ const OrderTable = ({ location }) => {
         onRow={handleOnClickRow}
         dataSource={filteredOrders}
         columns={orderListColumns}
+        scroll={{ x: 500 }}
         pagination={{
           pageSize: 20,
         }}
