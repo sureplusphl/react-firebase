@@ -51,7 +51,11 @@ const ProductAdd = () => {
       productsArray = Object.entries(productsObject).map((item) => {
         item[1].key = item[0];
         // console.log(item);
-        return <Select.Option key={item[0]} value={item[0]}>{item[1]['name']}</Select.Option>;
+        return (
+          <Select.Option key={item[0]} value={item[0]}>
+            {item[1]["name"]}
+          </Select.Option>
+        );
       });
     }
   });
@@ -67,7 +71,6 @@ const ProductAdd = () => {
   //     });
   //   }
   // });
-
 
   useEffect(() => {
     // if (handleShow) {
@@ -87,7 +90,7 @@ const ProductAdd = () => {
       // console.log('Fetch Store cat');
       getStoreCategories();
     }
-  }, [])
+  }, []);
   // const beforeUpload = (file) => {
   //   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   //   if (!isJpgOrPng) {
@@ -101,32 +104,32 @@ const ProductAdd = () => {
   // };
 
   const getStoreCategories = () => {
-
-    if(userInfoRole == 'admin') {
+    if (userInfoRole == "admin") {
       database.ref("categories").on("value", (snapshot) => {
         if (snapshot.val()) {
           const categories = snapshot.val();
           setStoresCategory(categories);
         }
       });
+    } else {
+      database
+        .ref("categories")
+        .orderByKey()
+        .equalTo(String(userInfoStore))
+        .on("value", (snapshot) => {
+          if (snapshot.val()) {
+            const categories = snapshot.val();
+            setStoresCategory(categories);
+          }
+        });
     }
-    else {
-      database.ref("categories").orderByKey().equalTo(String(userInfoStore)).on("value", (snapshot) => {
-        if (snapshot.val()) {
-          const categories = snapshot.val();
-          setStoresCategory(categories);
-        }
-      })
-    }
-
-  }
+  };
 
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
   };
-
 
   const handleChange = (info) => {
     let photo_index = info.fileList.length - 1;
@@ -141,26 +144,29 @@ const ProductAdd = () => {
     //     setPhotoUrl(imageUrl);
     //   });
     // }
-
   };
 
   if (storesCategory) {
     storesCategoryArray = Object.keys(storesCategory).map((key) => {
-      return <Option key={key} value={key}>{storesCategory[key].name}</Option>;
+      return (
+        <Option key={key} value={key}>
+          {storesCategory[key].name}
+        </Option>
+      );
     });
   }
 
   const handleStoreChanged = (key) => {
     if (storesCategory[key].children) {
       setProductCategories(storesCategory[key].children);
-      form.setFieldsValue({ product_category: '' });
+      form.setFieldsValue({ product_category: "" });
     } else {
       setProductCategories(null);
       productCategoryName = "";
       form.setFieldsValue({ product_category: "" });
     }
 
-    let rawPrice_status = '';
+    let rawPrice_status = "";
     database.ref("categories/" + key).on("value", (snapshot) => {
       if (snapshot.val()) {
         const keyVal = snapshot.val();
@@ -169,25 +175,27 @@ const ProductAdd = () => {
         // console.log(rawPrice_status);
       }
     });
-
-  }
+  };
 
   if (productCategories) {
-    productCategoryArray = (Object.keys(productCategories).map((id) => {
-      return <Option key={id} value={id}>{productCategories[id].name}</Option>;
-    }));
+    productCategoryArray = Object.keys(productCategories).map((id) => {
+      return (
+        <Option key={id} value={id}>
+          {productCategories[id].name}
+        </Option>
+      );
+    });
   }
 
   let productCategoryName = "";
   const handleProductCategoryChanged = (e, event) => {
     productCategoryName = event.children;
-  }
+  };
 
   const submitForm = (product) => {
-    const storageRef = storage.ref('products');
+    const storageRef = storage.ref("products");
 
     const processForm = (photo) => {
-
       if (product.raw_price) {
         if (
           product.raw_price &&
@@ -198,64 +206,120 @@ const ProductAdd = () => {
             title: "Are you sure?",
             text: "Your RAW PRICE is higher than your SELLING PRICE",
             showCancelButton: true,
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No'
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
           }).then((result) => {
             if (result.value) {
               let updates = {};
               // image upload to be followed
-              const defaultFile =
-                "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
+              // const defaultFile =
+              // "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
 
+              const defaultFile =
+                "https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/products%2Flogo.png?alt=media&token=491b29c8-d9be-4703-a634-14c7d235ab19";
               product.file = photo || defaultFile;
-              product.product_category_name = productCategoryName || storesCategory[product.store_id].name;
-              product.storecategory_order = storesCategory[product.store_id].store_category_order;
+              product.product_category_name =
+                productCategoryName || storesCategory[product.store_id].name;
+              product.storecategory_order =
+                storesCategory[product.store_id].store_category_order;
               delete product.picture;
               // product key
               const name = product.name.toLowerCase();
               const replaced = name.split(" ").join("_");
               product.key = uniqueId(`${replaced}_`);
 
-              database.ref('products').push(product).then(() => {
-                form.resetFields();
-                form.setFieldsValue({
-                  kgPerPiece: "",
-                  price: "",
-                  raw_price: "",
-                  mall_price: "",
-                  description: "",
-                  notes: "",
-                });
+              database
+                .ref("products")
+                .push(product)
+                .then(() => {
+                  form.resetFields();
+                  form.setFieldsValue({
+                    kgPerPiece: "",
+                    price: "",
+                    raw_price: "",
+                    mall_price: "",
+                    description: "",
+                    notes: "",
+                  });
 
-                message.success("Product Added!");
-                setShow(false);
-              });
+                  message.success("Product Added!");
+                  setShow(false);
+                });
 
               // updates["products/" + product["key"]] = product;
               // database.ref().update(updates);
               // form.resetFields();
               // setShow(false);
-            }
-            else if (result.dismiss == "cancel") {
-              console.log('cancelled');
+            } else if (result.dismiss == "cancel") {
+              console.log("cancelled");
             }
           });
         } else {
           let updates = {};
           // image upload to be followed
+          // const defaultFile =
+          //   "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
           const defaultFile =
-            "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
+            "https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/products%2Flogo.png?alt=media&token=491b29c8-d9be-4703-a634-14c7d235ab19";
 
           product.file = photo || defaultFile;
-          product.product_category_name = productCategoryName || storesCategory[product.store_id].name;
-          product.storecategory_order = storesCategory[product.store_id].store_category_order;
+          product.product_category_name =
+            productCategoryName || storesCategory[product.store_id].name;
+          product.storecategory_order =
+            storesCategory[product.store_id].store_category_order;
           delete product.picture;
           // product key
           const name = product.name.toLowerCase();
           const replaced = name.split(" ").join("_");
           product.key = uniqueId(`${replaced}_`);
 
-          database.ref('products').push(product).then(() => {
+          database
+            .ref("products")
+            .push(product)
+            .then(() => {
+              form.resetFields();
+              form.setFieldsValue({
+                kgPerPiece: "",
+                price: "",
+                raw_price: "",
+                mall_price: "",
+                description: "",
+                notes: "",
+              });
+
+              message.success("Product Added!");
+              setShow(false);
+            });
+
+          // updates["products/" + product["key"]] = product;
+          // database.ref().update(updates);
+          // form.resetFields();
+          // setShow(false);
+        }
+      } else {
+        let updates = {};
+        // image upload to be followed
+        // const defaultFile =
+        // "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
+
+        const defaultFile =
+          "https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/products%2Flogo.png?alt=media&token=491b29c8-d9be-4703-a634-14c7d235ab19";
+
+        product.file = photo || defaultFile;
+        product.product_category_name =
+          productCategoryName || storesCategory[product.store_id].name;
+        product.storecategory_order =
+          storesCategory[product.store_id].store_category_order;
+        delete product.picture;
+        // product key
+        const name = product.name.toLowerCase();
+        const replaced = name.split(" ").join("_");
+        product.key = uniqueId(`${replaced}_`);
+
+        database
+          .ref("products")
+          .push(product)
+          .then(() => {
             form.resetFields();
             form.setFieldsValue({
               kgPerPiece: "",
@@ -265,44 +329,8 @@ const ProductAdd = () => {
               description: "",
               notes: "",
             });
-
-            message.success("Product Added!");
             setShow(false);
           });
-
-          // updates["products/" + product["key"]] = product;
-          // database.ref().update(updates);
-          // form.resetFields();
-          // setShow(false);
-        }
-      }
-      else {
-        let updates = {};
-        // image upload to be followed
-        const defaultFile =
-          "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
-
-        product.file = photo || defaultFile;
-        product.product_category_name = productCategoryName || storesCategory[product.store_id].name;
-        product.storecategory_order = storesCategory[product.store_id].store_category_order;
-        delete product.picture;
-        // product key
-        const name = product.name.toLowerCase();
-        const replaced = name.split(" ").join("_");
-        product.key = uniqueId(`${replaced}_`);
-
-        database.ref('products').push(product).then(() => {
-          form.resetFields();
-          form.setFieldsValue({
-            kgPerPiece: "",
-            price: "",
-            raw_price: "",
-            mall_price: "",
-            description: "",
-            notes: "",
-          });
-          setShow(false);
-        });
 
         message.success("Product Added!");
         setShow(false);
@@ -312,7 +340,6 @@ const ProductAdd = () => {
         // form.resetFields();
         // setShow(false);
       }
-
     };
 
     const uploadFile = (err) => {
@@ -322,8 +349,7 @@ const ProductAdd = () => {
 
       uploadTask.on(
         "state_changed",
-        (snapShot) => {
-        },
+        (snapShot) => {},
         (err) => {
           message.error(err);
         },
@@ -337,10 +363,13 @@ const ProductAdd = () => {
             });
         }
       );
-    }
+    };
 
     if (product.picture) {
-      storageRef.child(product.picture.file.name).getDownloadURL().then(processForm, uploadFile);
+      storageRef
+        .child(product.picture.file.name)
+        .getDownloadURL()
+        .then(processForm, uploadFile);
     } else {
       processForm();
     }
@@ -350,7 +379,7 @@ const ProductAdd = () => {
     const text = e.target.value;
     const count = 100 - text.length;
     setDescriptionCount(count);
-  }
+  };
 
   return (
     <div>
@@ -391,22 +420,32 @@ const ProductAdd = () => {
               {photoUrl ? (
                 <img src={photoUrl} alt="avatar" style={{ width: "100%" }} />
               ) : (
-                  <div>
-                    <div className="ant-upload-text">Upload</div>
-                  </div>
-                )}
+                <div>
+                  <div className="ant-upload-text">Upload</div>
+                </div>
+              )}
             </Upload>
           </Form.Item>
 
           <Form.Item label="Description">
             <Form.Item name="description" style={{ marginBottom: 5 }}>
-              <Input.TextArea style={{ width: '100%' }} autoSize={{ minRows: "3", maxRows: "5" }} maxLength="100" onChange={handleDescriptionChange} />
+              <Input.TextArea
+                style={{ width: "100%" }}
+                autoSize={{ minRows: "3", maxRows: "5" }}
+                maxLength="100"
+                onChange={handleDescriptionChange}
+              />
             </Form.Item>
-            <p style={{ fontSize: 13 }}>Limit of 100 characters. ({descriptionCount} Left)</p>
+            <p style={{ fontSize: 13 }}>
+              Limit of 100 characters. ({descriptionCount} Left)
+            </p>
           </Form.Item>
 
           <Form.Item name="notes" label="Notes">
-            <Input.TextArea style={{ width: '100%' }} autoSize={{ minRows: "3", maxRows: "5" }} />
+            <Input.TextArea
+              style={{ width: "100%" }}
+              autoSize={{ minRows: "3", maxRows: "5" }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -414,7 +453,10 @@ const ProductAdd = () => {
             name="store_id"
             rules={[{ required: true }]}
           >
-            <Select placeholder="Choose a tier 2 category" onChange={handleStoreChanged}>
+            <Select
+              placeholder="Choose a tier 2 category"
+              onChange={handleStoreChanged}
+            >
               {storesCategoryArray}
             </Select>
           </Form.Item>
@@ -422,20 +464,19 @@ const ProductAdd = () => {
           <Form.Item
             label="Product Category"
             name="product_category"
-          // rules={[{ required: productCategories ? true : false }]}
+            // rules={[{ required: productCategories ? true : false }]}
           >
             <Select
               onChange={handleProductCategoryChanged}
-              placeholder="Choose a category">
+              placeholder="Choose a category"
+            >
               <Option value="">None</Option>
               {productCategoryArray}
             </Select>
           </Form.Item>
 
           <Form.Item label="Unit" name="unit" rules={[{ required: true }]}>
-            <Select>
-              {productsArray}
-            </Select>
+            <Select>{productsArray}</Select>
           </Form.Item>
           <Form.Item label="Kg per unit">
             <Form.Item name="kgPerPiece">
@@ -466,18 +507,17 @@ const ProductAdd = () => {
             <InputNumber />
           </Form.Item>
 
-          {
-            statusRawPrice == 'enabled' ? (<Form.Item
+          {statusRawPrice == "enabled" ? (
+            <Form.Item
               label="Raw Price"
               name="raw_price"
               rules={[{ required: true }]}
             >
               <Input />
-            </Form.Item>) : ''
-          }
-
-
-
+            </Form.Item>
+          ) : (
+            ""
+          )}
 
           <Form.Item label="Selling Price" name="price">
             <Input />
@@ -490,9 +530,15 @@ const ProductAdd = () => {
           <Form.Item {...tailLayout}>
             <Row justify="end">
               <Button
-                style={{ background: "#d86060", color: "#ffffff", marginRight: 10 }}
+                style={{
+                  background: "#d86060",
+                  color: "#ffffff",
+                  marginRight: 10,
+                }}
                 htmlType="reset"
-                onClick={() => { form.resetFields() }}
+                onClick={() => {
+                  form.resetFields();
+                }}
               >
                 Reset
               </Button>

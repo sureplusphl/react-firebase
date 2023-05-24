@@ -9,12 +9,12 @@ import {
   Upload,
   message,
   Switch,
-  Select
+  Select,
 } from "antd";
 import { FirebaseContext } from "../../shared/contexts/firebase.context";
 import { CategoryContext } from "../../shared/contexts/category.context";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const { Option } = Select;
 
@@ -24,13 +24,10 @@ const StoresAdd = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [photoUrl, setPhotoUrl] = useState();
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
   const [form] = Form.useForm();
 
-  const {
-    saveStoreCategory,
-    storeCategories
-  } = useContext(CategoryContext);
+  const { saveStoreCategory, storeCategories } = useContext(CategoryContext);
 
   const layout = {
     labelCol: { span: 6 },
@@ -44,7 +41,7 @@ const StoresAdd = () => {
   useEffect(() => {
     if (handleShow) {
       form.setFieldsValue({
-        show_description: false
+        show_description: false,
       });
     }
   }, []);
@@ -71,30 +68,36 @@ const StoresAdd = () => {
     //     setPhotoUrl(imageUrl);
     //   });
     // }
-
   };
 
   // count store category for 'product order' column
   let numArrayCategories = [];
   for (let i = 1; i <= storeCategories.length + 1; i++) {
-    numArrayCategories.push(<Option key={i} value={i}>{i}</Option>);
+    numArrayCategories.push(
+      <Option key={i} value={i}>
+        {i}
+      </Option>
+    );
   }
 
   const submitForm = (store) => {
-
     store.description = description;
 
     const processForm = (photo) => {
-      const defaultFile =
-          "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
+      // const defaultFile =
+      //     "https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/products%2Flogo.png?alt=media&token=ccc39378-3e77-4764-b38d-ea0258d27e29";
 
+      const defaultFile =
+        "https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/products%2Flogo.png?alt=media&token=491b29c8-d9be-4703-a634-14c7d235ab19";
       store.file = photo || defaultFile;
       delete store.picture;
 
-      store.statusOthersPrice = store.statusOthersPrice === true ? 'enabled': 'disabled';
-      store.statusKgPerUnit = store.statusKgPerUnit === true ? 'enabled': 'disabled';
-      store.statusRawPrice = store.statusRawPrice === true ? 'enabled': 'disabled';
-
+      store.statusOthersPrice =
+        store.statusOthersPrice === true ? "enabled" : "disabled";
+      store.statusKgPerUnit =
+        store.statusKgPerUnit === true ? "enabled" : "disabled";
+      store.statusRawPrice =
+        store.statusRawPrice === true ? "enabled" : "disabled";
 
       saveStoreCategory(store, true);
       handleClose();
@@ -131,12 +134,12 @@ const StoresAdd = () => {
   return (
     <div>
       <button
-          className="ant-btn ant-btn-primary"
-          variant="primary"
-          onClick={handleShow}
-        >
-          Add Level 2 Category
-        </button>
+        className="ant-btn ant-btn-primary"
+        variant="primary"
+        onClick={handleShow}
+      >
+        Add Level 2 Category
+      </button>
       <div
         className="ant-divider ant-divider-horizontal"
         role="separator"
@@ -185,25 +188,25 @@ const StoresAdd = () => {
             name="store_category_order"
             rules={[{ required: true }]}
           >
-            <Select placeholder="Choose a number" >
-              {numArrayCategories}
-            </Select>
+            <Select placeholder="Choose a number">{numArrayCategories}</Select>
           </Form.Item>
 
           <Form.Item
             name="show_description"
             valuePropName="checked"
-            label="Show Description"MeDescssage
+            label="Show Description"
+            MeDescssage
           >
-            <Switch
-              checkedChildren="Enabled"
-              unCheckedChildren="Disabled"
-            />
+            <Switch checkedChildren="Enabled" unCheckedChildren="Disabled" />
           </Form.Item>
 
           <Form.Item label="Description">
             {/* <Input.TextArea style={{ width: '100%' }} autoSize={{minRows:"3", maxRows:"5"}} /> */}
-            <ReactQuill theme="snow" value={description} onChange={setDescription} />
+            <ReactQuill
+              theme="snow"
+              value={description}
+              onChange={setDescription}
+            />
           </Form.Item>
 
           <Form.Item
@@ -211,10 +214,7 @@ const StoresAdd = () => {
             valuePropName="checked"
             label="Other's Price"
           >
-            <Switch
-              checkedChildren="Enabled"
-              unCheckedChildren="Disabled"
-            />
+            <Switch checkedChildren="Enabled" unCheckedChildren="Disabled" />
           </Form.Item>
 
           <Form.Item
@@ -222,28 +222,25 @@ const StoresAdd = () => {
             valuePropName="checked"
             label="Kg Per Unit"
           >
-            <Switch
-              checkedChildren="Enabled"
-              unCheckedChildren="Disabled"
-            />
+            <Switch checkedChildren="Enabled" unCheckedChildren="Disabled" />
           </Form.Item>
-
 
           <Form.Item
             name="statusRawPrice"
             valuePropName="checked"
             label="Raw Price"
           >
-            <Switch
-              checkedChildren="Enabled"
-              unCheckedChildren="Disabled"
-            />
+            <Switch checkedChildren="Enabled" unCheckedChildren="Disabled" />
           </Form.Item>
 
           <Form.Item {...tailLayout}>
             <Row justify="end">
               <Button
-                style={{ background: "#d86060", color: "#ffffff", marginRight: 10 }}
+                style={{
+                  background: "#d86060",
+                  color: "#ffffff",
+                  marginRight: 10,
+                }}
                 htmlType="reset"
                 onClick={() => form.resetFields()}
               >

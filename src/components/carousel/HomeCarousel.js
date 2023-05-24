@@ -221,14 +221,20 @@ export default function HomeCarousel(props) {
             <Carousel autoplay style={{ width: "100%" }} {...settings}>
               <Col span={24}>
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/images%2Fbanners%2F20200320_171424.jpg?alt=media&token=e287767b-3e69-406e-8005-d5a5737758ab"
+                  src="https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/images%2F20200320_171424.jpg?alt=media&token=65242692-56a2-4522-bb3b-f82abf6bdcdf"
                   alt=""
                   width="100%"
                 />
+                {/* old */}
+                {/* <img 
+                  src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/images%2Fbanners%2F20200320_171424.jpg?alt=media&token=e287767b-3e69-406e-8005-d5a5737758ab"
+                  alt=""
+                  width="100%"
+                /> */}
               </Col>
               <Col span={24}>
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/images%2Fbanners%2F20200320_171424.jpg?alt=media&token=e287767b-3e69-406e-8005-d5a5737758ab"
+                  src="https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/images%2F20200320_171424.jpg?alt=media&token=65242692-56a2-4522-bb3b-f82abf6bdcdf"
                   alt=""
                   width="100%"
                 />

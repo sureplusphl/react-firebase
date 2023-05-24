@@ -543,21 +543,21 @@ const Home = () => {
           <Col span={4}></Col>
           <Col span={5}>
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/images%2Fbanners%2FCopy%20of%20USEMBASSY_flag.png?alt=media&token=e1e99691-1c44-4415-a752-999449667add"
+              src="https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/images%2FUSEMBASSY_flag.png?alt=media&token=3516843c-7ed6-4d80-81e0-47a9849baa4d"
               alt=""
               width="100%"
             />
           </Col>
           <Col span={7}>
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/images%2Fbanners%2FCopy%20of%202016-yseali-seeds.png?alt=media&token=168603a5-9fe6-4189-9f28-d705d35d4da7"
+              src="https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/images%2F2016-yseali-seeds.png?alt=media&token=4a140bbd-3ebb-4a35-85e8-ecd1129cb05c"
               alt=""
               width="100%"
             />
           </Col>
           <Col span={4}>
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/buyanihanph.appspot.com/o/images%2Fbanners%2FCopy%20of%20cv_blue.png?alt=media&token=b5501925-3a23-4768-9113-7c6bf9a8ddf3"
+              src="https://firebasestorage.googleapis.com/v0/b/sureplusfoods-42617.appspot.com/o/images%2Fcv_blue.png?alt=media&token=53fef8fb-348f-486c-aad0-92323ba8dc7c"
               alt=""
               width="100%"
             />
