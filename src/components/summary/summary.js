@@ -366,15 +366,34 @@ const Summary = (showSummaryModal) => {
               </Row>
               <br />
               <Row>
-                <Col span={15}>
-                  <span className="totalCard">SHIPPING CHARGE</span>
+                <Col
+                  span={15}
+                  style={{
+                    textDecoration: showShippingCharge
+                      ? "none"
+                      : "line-through",
+                    color: "red",
+                  }}
+                >
+                  <span
+                    className="totalCard"
+                    style={{ color: "rgba(0, 0, 0, 0.6" }}
+                  >
+                    SHIPPING CHARGE
+                  </span>
                 </Col>
-                <Col span={9}>
+                <Col
+                  span={9}
+                  style={{
+                    textDecoration: showShippingCharge
+                      ? "none"
+                      : "line-through",
+                    color: "red",
+                  }}
+                >
                   <strong
                     style={{
-                      textDecoration: showShippingCharge
-                        ? "none"
-                        : "line-through",
+                      color: "rgba(0, 0, 0, 0.6",
                     }}
                   >
                     Php{" "}
