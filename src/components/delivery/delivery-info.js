@@ -582,7 +582,6 @@ const DeliveryInfoComponent = () => {
                       label="Payment Method"
                       style={{
                         textAlign: "left",
-                        display: showShippingCharge ? "block" : "none",
                       }}
                     >
                       <Radio.Group onChange={radiobtn}>
