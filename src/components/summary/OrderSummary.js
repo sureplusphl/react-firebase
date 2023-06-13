@@ -11,14 +11,15 @@ import {
   Button,
   message,
   Typography,
+  Switch,
 } from "antd";
+import { ShoppingOutlined } from "@ant-design/icons";
 import { AppContext } from "../../shared/contexts/app.context";
 import CountDisplay from "../count-display";
 import "./summary.css";
 import QuantityButton from "../product-card/quantity-button";
 import { FirebaseContext } from "../../shared/contexts/firebase.context";
 import Swal from "sweetalert2";
-
 const { Text } = Typography;
 
 function OrderSummary() {
@@ -35,11 +36,14 @@ function OrderSummary() {
     redeemedEarnedPoints,
     discountInfo,
     setDiscountInfo,
+    showShippingCharge,
+    setShowShippingCharge,
     next,
   } = useContext(AppContext);
   const [discountCode, setDiscountCode] = useState();
   const [discountsList, setDiscountsList] = useState([]);
   const [discountsApplied, setDiscountsApplied] = useState([]);
+  // const [showShippingCharge, setShowShippingCharge] = useState(false);
 
   const [form] = Form.useForm();
 
@@ -272,159 +276,220 @@ function OrderSummary() {
   return (
     <>
       <Col xxl={6} xl={8} lg={12} md={0} style={{ padding: 24, marginTop: 45 }}>
-        <Card className="bordered" style={{ padding: 24 }}>
-          <Row>
-            <Col span={15}>
-              <span className="totalCard">GOODS TOTAL</span>
-            </Col>
-            <Col span={9}>
-              <strong>Php {parseFloat(totalGoods).toFixed(2)}</strong>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col span={15}>
-              <span className="totalCard">
-                TOTAL WEIGHT <br /> (kgs)
-              </span>
-            </Col>
-            <Col span={9}>
-              <strong>
-                {parseFloat(totalKilos).toFixed(2)}{" "}
-                {parseInt(totalKilos, 10) > 1 ? `kgs` : `kg`}
-              </strong>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col span={15}>
-              <span className="totalCard">PACKING FEE</span>
-            </Col>
-            <Col span={9}>
-              <strong>
-                Php{" "}
-                {totalGoods < 1000 ? parseFloat(totalProcessFee).toFixed(2) : 0}
-              </strong>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col span={15}>
-              <span className="totalCard">SHIPPING CHARGE</span>
-            </Col>
-            <Col span={9}>
-              <strong>
-                Php{" "}
-                {totalGoods < 1000 ? parseFloat(totalShipping).toFixed(2) : 0}
-              </strong>
-            </Col>
-          </Row>
-          <br />
-          {redeemedEarnedPoints !== 0 ? (
-            <>
+        {parseFloat(totalGoods) !== 0 ? (
+          <>
+            <Card className="bordered" style={{ padding: 24 }}>
               <Row>
                 <Col span={15}>
-                  <span className="totalCard">REDEEMED POINTS</span>
+                  <span className="totalCard">GOODS TOTAL</span>
                 </Col>
                 <Col span={9}>
-                  <strong>Php (-{parseFloat(redeemedEarnedPoints)})</strong>
+                  <strong>Php {parseFloat(totalGoods).toFixed(2)}</strong>
                 </Col>
               </Row>
               <br />
-            </>
-          ) : null}
-          <Row>
-            <Col span={15}>
-              <span className="totalCard">DISCOUNT</span>
-            </Col>
-            <Col span={9}>
-              <strong>
-                Php{" "}
-                {discountInfo !== undefined
-                  ? discountInfo.total_discount_value
-                  : 0}
-              </strong>
-            </Col>
-            <Col span={24}></Col>
-            {discountInfo !== undefined
-              ? discountInfo.discount_list.map((e, index) => (
-                  <>
+              <Row>
+                <Col span={15}>
+                  <span className="totalCard">
+                    TOTAL WEIGHT <br /> (kgs)
+                  </span>
+                </Col>
+                <Col span={9}>
+                  <strong>
+                    {parseFloat(totalKilos).toFixed(2)}{" "}
+                    {parseInt(totalKilos, 10) > 1 ? `kgs` : `kg`}
+                  </strong>
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col span={15}>
+                  <span className="totalCard">PACKING FEE</span>
+                </Col>
+                <Col span={9}>
+                  <strong>
+                    Php{" "}
+                    {totalGoods < 1000
+                      ? parseFloat(totalProcessFee).toFixed(2)
+                      : 0}
+                  </strong>
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col span={15}>
+                  <small className="totalCard">Include delivery?</small>
+                </Col>
+                <Col span={9}>
+                  <Switch
+                    style={{
+                      backgroundColor: "rgb(96, 180, 20)",
+                    }}
+                    checkedChildren="Yes"
+                    unCheckedChildren="No"
+                    checked={showShippingCharge}
+                    onClick={(e) => {
+                      console.log(e);
+                      setShowShippingCharge(e);
+                    }}
+                  />
+                </Col>
+              </Row>
+              <br />
+              <Row
+                style={{
+                  color: showShippingCharge ? "black" : "red",
+                  textDecoration: showShippingCharge ? "none" : "line-through",
+                }}
+              >
+                <Col span={15} style={{ color: "rgba(0, 0, 0, 0.6" }}>
+                  <span className="totalCard">SHIPPING CHARGE</span>
+                </Col>
+                <Col span={9}>
+                  <strong
+                    style={{
+                      color: showShippingCharge
+                        ? "rgba(0, 0, 0, 0.6"
+                        : "darkGray",
+                    }}
+                  >
+                    Php{" "}
+                    {totalGoods < 1000
+                      ? parseFloat(totalShipping).toFixed(2)
+                      : 0}
+                  </strong>
+                </Col>
+              </Row>
+
+              <br />
+              {redeemedEarnedPoints !== 0 ? (
+                <>
+                  <Row>
                     <Col span={15}>
-                      <Text type="secondary" style={{ fontSize: "13px" }}>
-                        {e.name}
-                      </Text>
+                      <span className="totalCard">REDEEMED POINTS</span>
                     </Col>
                     <Col span={9}>
-                      <Text type="secondary" style={{ fontSize: "13px" }}>
-                        Php {e.value}
-                      </Text>
+                      <strong>Php (-{parseFloat(redeemedEarnedPoints)})</strong>
                     </Col>
-                  </>
-                ))
-              : ""}
+                  </Row>
+                  <br />
+                </>
+              ) : null}
+              <Row>
+                <Col span={15}>
+                  <span className="totalCard">DISCOUNT</span>
+                </Col>
+                <Col span={9}>
+                  <strong>
+                    Php{" "}
+                    {discountInfo !== undefined
+                      ? discountInfo.total_discount_value
+                      : 0}
+                  </strong>
+                </Col>
+                <Col span={24}></Col>
+                {discountInfo !== undefined
+                  ? discountInfo.discount_list.map((e, index) => (
+                      <>
+                        <Col span={15}>
+                          <Text type="secondary" style={{ fontSize: "13px" }}>
+                            {e.name}
+                          </Text>
+                        </Col>
+                        <Col span={9}>
+                          <Text type="secondary" style={{ fontSize: "13px" }}>
+                            Php {e.value}
+                          </Text>
+                        </Col>
+                      </>
+                    ))
+                  : ""}
 
-            <Form form={form}>
-              <div style={{ marginTop: 20 }}>
-                <Row>
-                  <Col span={15}>
-                    <Form.Item
-                      label=""
-                      name="code"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Enter a valid discount code or gift card",
-                        },
-                      ]}
-                    >
-                      <Input
-                        placeholder="Discount Code"
-                        onChange={(e) => setDiscountCode(e.target.value)}
-                      />
-                    </Form.Item>
-                  </Col>
+                <Form form={form}>
+                  <div style={{ marginTop: 20 }}>
+                    <Row>
+                      <Col span={15}>
+                        <Form.Item
+                          label=""
+                          name="code"
+                          rules={[
+                            {
+                              required: true,
+                              message:
+                                "Enter a valid discount code or gift card",
+                            },
+                          ]}
+                        >
+                          <Input
+                            placeholder="Discount Code"
+                            onChange={(e) => setDiscountCode(e.target.value)}
+                          />
+                        </Form.Item>
+                      </Col>
 
-                  <Col span={9}>
-                    <Form.Item>
-                      <Button onClick={onFinish} htmlType="submit">
-                        Apply
-                      </Button>
-                    </Form.Item>
-                  </Col>
-                </Row>
+                      <Col span={9}>
+                        <Form.Item>
+                          <Button onClick={onFinish} htmlType="submit">
+                            Apply
+                          </Button>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  </div>
+                </Form>
+              </Row>
+              <br />
+              <div className="totalAmmount">
+                <h1 className="totalText">
+                  Php{" "}
+                  {totalGoods < 1000
+                    ? discountInfo !== undefined
+                      ? parseFloat(
+                          totalGoods +
+                            totalProcessFee +
+                            (showShippingCharge ? totalShipping : 0) -
+                            redeemedEarnedPoints -
+                            discountInfo.total_discount_value
+                        ).toFixed(2)
+                      : parseFloat(
+                          totalGoods +
+                            totalProcessFee +
+                            (showShippingCharge ? totalShipping : 0) -
+                            redeemedEarnedPoints
+                        ).toFixed(2)
+                    : discountInfo !== undefined
+                    ? parseFloat(
+                        totalGoods -
+                          redeemedEarnedPoints -
+                          discountInfo.total_discount_value
+                      ).toFixed(2)
+                    : parseFloat(totalGoods - redeemedEarnedPoints).toFixed(2)}
+                </h1>
+                <h1 className="totalSubText">TOTAL AMOUNT DUE</h1>
               </div>
-            </Form>
-          </Row>
-          <br />
-          <div className="totalAmmount">
-            <h1 className="totalText">
-              Php{" "}
-              {totalGoods < 1000
-                ? discountInfo !== undefined
-                  ? parseFloat(
-                      totalGoods +
-                        totalProcessFee +
-                        totalShipping -
-                        redeemedEarnedPoints -
-                        discountInfo.total_discount_value
-                    ).toFixed(2)
-                  : parseFloat(
-                      totalGoods +
-                        totalProcessFee +
-                        totalShipping -
-                        redeemedEarnedPoints
-                    ).toFixed(2)
-                : discountInfo !== undefined
-                ? parseFloat(
-                    totalGoods -
-                      redeemedEarnedPoints -
-                      discountInfo.total_discount_value
-                  ).toFixed(2)
-                : parseFloat(totalGoods - redeemedEarnedPoints).toFixed(2)}
-            </h1>
-            <h1 className="totalSubText">TOTAL AMOUNT DUE</h1>
-          </div>
-        </Card>
+            </Card>
+          </>
+        ) : (
+          <>
+            {/* if no product goods display empty card */}
+            <Card className="bordered" style={{ padding: 24, height: "300px" }}>
+              <Row>
+                <Col style={{ textAlign: "center" }}>
+                  <h3> SELECT PRODUCT</h3>
+                  <br />
+                  <ShoppingOutlined
+                    style={{
+                      fontSize: "50px",
+                      color: "rgba(96, 180, 20, 0.4)",
+                    }}
+                  />
+                  <br />
+                  <p>Your Items will be displayed here</p>
+                </Col>
+              </Row>
+            </Card>
+          </>
+        )}
         <div className="summaryModalButtonConfirm">
           <Button
             className="shopConfirmButton"

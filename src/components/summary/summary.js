@@ -35,6 +35,7 @@ const Summary = (showSummaryModal) => {
     redeemedEarnedPoints,
     discountInfo,
     setDiscountInfo,
+    showShippingCharge,
   } = useContext(AppContext);
   const [discountCode, setDiscountCode] = useState();
   const [discountsList, setDiscountsList] = useState([]);
@@ -369,7 +370,13 @@ const Summary = (showSummaryModal) => {
                   <span className="totalCard">SHIPPING CHARGE</span>
                 </Col>
                 <Col span={9}>
-                  <strong>
+                  <strong
+                    style={{
+                      textDecoration: showShippingCharge
+                        ? "none"
+                        : "line-through",
+                    }}
+                  >
                     Php{" "}
                     {totalGoods < 1000
                       ? parseFloat(totalShipping).toFixed(2)
@@ -463,14 +470,14 @@ const Summary = (showSummaryModal) => {
                       ? parseFloat(
                           totalGoods +
                             totalProcessFee +
-                            totalShipping -
+                            (showShippingCharge ? totalShipping : 0) -
                             redeemedEarnedPoints -
                             discountInfo.total_discount_value
                         ).toFixed(2)
                       : parseFloat(
                           totalGoods +
                             totalProcessFee +
-                            totalShipping -
+                            (showShippingCharge ? totalShipping : 0) -
                             redeemedEarnedPoints
                         ).toFixed(2)
                     : discountInfo !== undefined

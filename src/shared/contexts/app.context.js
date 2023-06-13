@@ -36,10 +36,11 @@ const AppProvider = ({ children, history, match }) => {
   const [storeSureplus, setStoreSureplus] = useState([]);
   const [activeStore, setActiveStore] = useState("");
   const [storesCategories, setStoresCategories] = useState([]);
-  const [earnedPointsColor, setEarnedPointsColor] = useState('gray');
+  const [earnedPointsColor, setEarnedPointsColor] = useState("gray");
   const [redeemedEarnedPoints, setRedeemedEarnedPoints] = useState(0);
   const [discountInfo, setDiscountInfo] = useState();
   const [discountsList, setDiscountsList] = useState([]);
+  const [showShippingCharge, setShowShippingCharge] = useState(false);
 
   const initAuth = () => {
     auth.onAuthStateChanged((user) => {
@@ -59,16 +60,16 @@ const AppProvider = ({ children, history, match }) => {
   };
 
   const sortByKey = (array, key) =>
-  array.sort((a, b) => {
-    const x = a[key].toLowerCase();
-    const y = b[key].toLowerCase();
-    return x < y ? -1 : x > y ? 1 : 0;
-  });
+    array.sort((a, b) => {
+      const x = a[key].toLowerCase();
+      const y = b[key].toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
 
   const sortByNumAsc = (array, key) =>
-  array.sort(function(a, b) {
-    return a[key] - b[key];
-  });
+    array.sort(function (a, b) {
+      return a[key] - b[key];
+    });
 
   useEffect(() => {
     initAuth();
@@ -113,7 +114,7 @@ const AppProvider = ({ children, history, match }) => {
       product = { ...product, quantity: (order && order.quantity) || 0 };
       return product;
     });
-    setProducts(sortByNumAsc(productsArray, 'storecategory_order'));
+    setProducts(sortByNumAsc(productsArray, "storecategory_order"));
   }, [orders, mainProducts]);
 
   useEffect(() => {
@@ -188,7 +189,7 @@ const AppProvider = ({ children, history, match }) => {
         subtotal: getSubTotal(order, quantity),
       };
 
-      const index = orderList.findIndex(x => x.key === order.key);
+      const index = orderList.findIndex((x) => x.key === order.key);
 
       orderList[index] = selectedOrder;
       setOrders([...orderList]);
@@ -258,31 +259,30 @@ const AppProvider = ({ children, history, match }) => {
     );
 
     const getOrdersKPU = orders.map((order) => {
-      let kgPerUnit_status = '';
+      let kgPerUnit_status = "";
       let ordersWithkg = [];
       database.ref("categories/" + order.store_id).on("value", (snapshot) => {
         if (snapshot.val()) {
           const keyVal = snapshot.val();
           kgPerUnit_status = keyVal.statusKgPerUnit;
-  
-          if(kgPerUnit_status == 'enabled') {
-            ordersWithkg = {...order, statusKPU:'enabled'};
+
+          if (kgPerUnit_status == "enabled") {
+            ordersWithkg = { ...order, statusKPU: "enabled" };
           }
-        
         }
       });
       return ordersWithkg;
     });
     console.log(getOrdersKPU);
     const sumKilos = _.sumBy(getOrdersKPU, (order) => order.kilo);
-    const final_sumKilos = sumKilos == null || sumKilos == undefined ? '0.00' : sumKilos;
+    const final_sumKilos =
+      sumKilos == null || sumKilos == undefined ? "0.00" : sumKilos;
     setTotalKilos(final_sumKilos);
     setTotalGoods(sumGoods);
-    
 
     // const a = (sumKilos / 5) * 50;
     // const b = Math.ceil(sumKilos / 5) * 50;
-    
+
     // if (sumKilos <= 5) {
     //   setTotalShipping(0);
     //   if (sumKilos > 0) setTotalShipping(75);
@@ -291,7 +291,7 @@ const AppProvider = ({ children, history, match }) => {
     // }
 
     setTotalShipping(shopStatus.del_fee);
-    setTotalProcessFee(shopStatus.process_fee)
+    setTotalProcessFee(shopStatus.process_fee);
   };
 
   const getBatchInfo = () => {
@@ -371,12 +371,12 @@ const AppProvider = ({ children, history, match }) => {
   const calculateProductStocks = () => {};
 
   const fetchStoresCategory = () => {
-    const dbRef = database.ref('categories');
+    const dbRef = database.ref("categories");
     dbRef.on("value", (snapshot) => {
       const result = snapshot.val();
 
       const response = Object.keys(result).map((e, index) => {
-        if(index === 0) {
+        if (index === 0) {
           // setActiveStore(e);
           setActiveStore("");
         }
@@ -386,9 +386,8 @@ const AppProvider = ({ children, history, match }) => {
 
       setStoresCategories(sortByNumAsc(response, "store_category_order"));
       // setStoresCategories(sortByKey(response, "name"));
-    })
-  }
-
+    });
+  };
 
   const fetchStoreSureplus = () => {
     database
@@ -418,10 +417,9 @@ const AppProvider = ({ children, history, match }) => {
             })) ||
           [];
 
-          setDiscountsList(appLocationArray);
+        setDiscountsList(appLocationArray);
       });
-  }
-
+  };
 
   const submitOrder = (deliveryData) => {
     setIsSubmitting(true);
@@ -452,29 +450,29 @@ const AppProvider = ({ children, history, match }) => {
 
     //***************************************
     //  if redeemed points
-    if(loggedUser && redeemedEarnedPoints > 0) {
+    if (loggedUser && redeemedEarnedPoints > 0) {
       let key = loggedUser.uid;
-      let newPoints = parseFloat(loggedUser.points) - parseFloat(redeemedEarnedPoints);
+      let newPoints =
+        parseFloat(loggedUser.points) - parseFloat(redeemedEarnedPoints);
 
       let user_points_hist = new Array();
-      user_points_hist = loggedUser.points_history ? loggedUser.points_history : [];
+      user_points_hist = loggedUser.points_history
+        ? loggedUser.points_history
+        : [];
       let hist = {
         points_redeemed: redeemedEarnedPoints,
         points_total: newPoints,
         date: moment().tz("Asia/Manila").format("MMM DD, YYYY h:mm a"),
         order_id: orderKey,
-      }
+      };
       user_points_hist.push(hist);
-
 
       loggedUser.points = newPoints;
       loggedUser.points_history = user_points_hist;
 
       let userInfo = {};
       userInfo[`profiles/${key}`] = loggedUser;
-      database
-        .ref()
-        .update(userInfo);
+      database.ref().update(userInfo);
     }
     // ************************************
 
@@ -484,45 +482,44 @@ const AppProvider = ({ children, history, match }) => {
       .ref()
       .update(orderInfo)
       .then(() => {
-
-        if(loggedUser) {
+        if (loggedUser) {
           let userInfo = {};
 
-          if(loggedUser.$) {
+          if (loggedUser.$) {
             let key = loggedUser.uid;
 
             let loggedUser_notReg = {};
             let user_points_hist = new Array();
-            user_points_hist = loggedUser_notReg.points_history ? loggedUser_notReg.points_history : [];
+            user_points_hist = loggedUser_notReg.points_history
+              ? loggedUser_notReg.points_history
+              : [];
             let hist = {
               points_earned: deliveryData.points_earned,
               points_total: deliveryData.points_total,
               date: moment().tz("Asia/Manila").format("MMM DD, YYYY h:mm a"),
               order_id: orderKey,
-            }
+            };
             user_points_hist.push(hist);
-
 
             loggedUser_notReg.points = deliveryData.points_total;
             loggedUser_notReg.points_history = user_points_hist;
             loggedUser_notReg.uid = key;
             loggedUser_notReg.email = loggedUser.email;
 
-
             userInfo[`profiles/${key}`] = loggedUser_notReg;
-          }
-          else {
+          } else {
             let key = loggedUser.uid;
             let user_points_hist = new Array();
-            user_points_hist = loggedUser.points_history ? loggedUser.points_history : [];
+            user_points_hist = loggedUser.points_history
+              ? loggedUser.points_history
+              : [];
             let hist = {
               points_earned: deliveryData.points_earned,
               points_total: deliveryData.points_total,
               date: moment().tz("Asia/Manila").format("MMM DD, YYYY h:mm a"),
               order_id: orderKey,
-            }
+            };
             user_points_hist.push(hist);
-
 
             loggedUser.points = deliveryData.points_total;
             loggedUser.points_history = user_points_hist;
@@ -534,18 +531,15 @@ const AppProvider = ({ children, history, match }) => {
             .ref()
             .update(userInfo)
             .then(() => {
-
-              if(discountInfo) {
-
+              if (discountInfo) {
                 discountInfo.discount_list.map((dis, index) => {
-
                   const listDis = discountsList.find((e) => e.key === dis.key);
 
                   // deduct 1 on balance per discount
                   listDis.balance = parseInt(listDis.balance - 1);
                   let updates = {};
                   updates["discounts/" + listDis.key] = listDis;
-            
+
                   database
                     .ref()
                     .update(updates)
@@ -553,26 +547,20 @@ const AppProvider = ({ children, history, match }) => {
                       completeOrder();
                     });
                 });
-
-              }
-              else {
+              } else {
                 completeOrder();
               }
-              
-            })
-        }
-        else {
-          if(discountInfo) {
-            
+            });
+        } else {
+          if (discountInfo) {
             discountInfo.discount_list.map((dis, index) => {
-
               const listDis = discountsList.find((e) => e.key === dis.key);
 
               // deduct 1 on balance per discount
               listDis.balance = parseInt(listDis.balance - 1);
               let updates = {};
               updates["discounts/" + listDis.key] = listDis;
-        
+
               database
                 .ref()
                 .update(updates)
@@ -580,14 +568,10 @@ const AppProvider = ({ children, history, match }) => {
                   completeOrder();
                 });
             });
-            
-          }
-          else {
+          } else {
             completeOrder();
           }
-          
         }
-
       });
   };
 
@@ -629,8 +613,10 @@ const AppProvider = ({ children, history, match }) => {
     earnedPointsColor,
     setRedeemedEarnedPoints,
     redeemedEarnedPoints,
-    discountInfo, 
+    discountInfo,
     setDiscountInfo,
+    showShippingCharge,
+    setShowShippingCharge,
   };
 
   return <AppContext.Provider value={payload}>{children}</AppContext.Provider>;
