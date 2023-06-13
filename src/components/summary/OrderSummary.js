@@ -318,7 +318,9 @@ function OrderSummary() {
               <br />
               <Row>
                 <Col span={15}>
-                  <small className="totalCard">Include delivery?</small>
+                  <small className="totalCard">
+                    Avail of in-house delivery?
+                  </small>
                 </Col>
                 <Col span={9}>
                   <Switch
