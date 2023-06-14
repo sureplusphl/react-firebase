@@ -318,21 +318,21 @@ function OrderSummary() {
               <br />
               <Row>
                 <Col span={15}>
-                  <small className="totalCard">
-                      DELIVERY
-                  </small>
+                  <small className="totalCard">DELIVERY</small>
                 </Col>
-                <Col span={9}>
-                <Select
-                  defaultValue="lucy"
-                  style={{ width: 120 }}
-                  onChange={ value => setShowShippingCharge(value === '0')}
-                  options={[
-                    { value: '0', label: 'Sureplus in-house delivery' },
-                    { value: '1', label: 'Third party delivery or pick-up' },
-                    
-                  ]}
-                />
+              </Row>
+              <br />
+              <Row>
+                <Col span={24}>
+                  <Select
+                    defaultValue="Select Delivery type"
+                    style={{ width: "100%" }}
+                    onChange={(value) => setShowShippingCharge(value === "0")}
+                    options={[
+                      { value: "0", label: "Sureplus in-house delivery" },
+                      { value: "1", label: "Third party delivery or pick-up" },
+                    ]}
+                  />
                   {/* <Switch
                     style={{
                       backgroundColor: "rgb(96, 180, 20)",
