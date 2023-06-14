@@ -11,7 +11,7 @@ import {
   Button,
   message,
   Typography,
-  Switch,
+  Select,
 } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
 import { AppContext } from "../../shared/contexts/app.context";
@@ -319,11 +319,21 @@ function OrderSummary() {
               <Row>
                 <Col span={15}>
                   <small className="totalCard">
-                    Avail of in-house delivery?
+                      DELIVERY
                   </small>
                 </Col>
                 <Col span={9}>
-                  <Switch
+                <Select
+                  defaultValue="lucy"
+                  style={{ width: 120 }}
+                  onChange={ value => setShowShippingCharge(value === '0')}
+                  options={[
+                    { value: '0', label: 'Sureplus in-house delivery' },
+                    { value: '1', label: 'Third party delivery or pick-up' },
+                    
+                  ]}
+                />
+                  {/* <Switch
                     style={{
                       backgroundColor: "rgb(96, 180, 20)",
                     }}
@@ -334,7 +344,7 @@ function OrderSummary() {
                       console.log(e);
                       setShowShippingCharge(e);
                     }}
-                  />
+                  /> */}
                 </Col>
               </Row>
               <br />
