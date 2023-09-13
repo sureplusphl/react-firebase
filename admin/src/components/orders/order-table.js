@@ -178,14 +178,20 @@ const OrderTable = ({ location }) => {
                 label: "Total Kilos",
                 value: `${product.total_kilos}kg`,
               },
+              // {
+              //   label: "Packing Fee",
+              //   value: `Php ${
+              //     product.total_processFee
+              //       ? product.total_goods < 1000
+              //         ? product.total_processFee
+              //         : "0.00"
+              //       : "0.00"
+              //   }`,
+              // },
               {
                 label: "Packing Fee",
                 value: `Php ${
-                  product.total_processFee
-                    ? product.total_goods < 1000
-                      ? product.total_processFee
-                      : "0.00"
-                    : "0.00"
+                  product.total_processFee ? product.total_processFee : "0.00"
                 }`,
               },
               {

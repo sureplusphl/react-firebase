@@ -358,9 +358,10 @@ const Summary = (showSummaryModal) => {
                 <Col span={9}>
                   <strong>
                     Php{" "}
-                    {totalGoods < 1000
+                    {/* {totalGoods < 1000
                       ? parseFloat(totalProcessFee).toFixed(2)
-                      : 0}
+                      : 0} */}
+                    {parseFloat(totalProcessFee).toFixed(2)}
                   </strong>
                 </Col>
               </Row>

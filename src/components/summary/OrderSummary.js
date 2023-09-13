@@ -308,10 +308,11 @@ function OrderSummary() {
                 </Col>
                 <Col span={9}>
                   <strong>
-                    Php{" "}
-                    {totalGoods < 1000
+                    Php {/* totalProcessFee|packagingFee  */}
+                    {/* {totalGoods < 1000
                       ? parseFloat(totalProcessFee).toFixed(2)
-                      : 0}
+                      : 0} */}
+                    {parseFloat(totalProcessFee).toFixed(2)}
                   </strong>
                 </Col>
               </Row>
@@ -471,11 +472,14 @@ function OrderSummary() {
                         ).toFixed(2)
                     : discountInfo !== undefined
                     ? parseFloat(
-                        totalGoods -
+                        totalGoods +
+                          totalProcessFee -
                           redeemedEarnedPoints -
                           discountInfo.total_discount_value
                       ).toFixed(2)
-                    : parseFloat(totalGoods - redeemedEarnedPoints).toFixed(2)}
+                    : parseFloat(
+                        totalGoods + totalProcessFee - redeemedEarnedPoints
+                      ).toFixed(2)}
                 </h1>
                 <h1 className="totalSubText">TOTAL AMOUNT DUE</h1>
               </div>

@@ -29,6 +29,7 @@ const DeliveryInfoComponent = () => {
     submitOrder,
     setCurrent,
     setTotalShipping,
+    handleCartSummary,
     shopStatus,
     totalGoods,
     setTotalGoods,
@@ -52,6 +53,7 @@ const DeliveryInfoComponent = () => {
     getPayment();
     getBankSettings();
     setOrderType(showShippingCharge ? "regular_delivery" : "pickup");
+    handleCartSummary();
   }, [setOrderType]);
 
   const layout = {
@@ -319,6 +321,7 @@ const DeliveryInfoComponent = () => {
       {...layout}
       initialValues={{
         order_notes: cus_ordernotes,
+        order_type: orderType,
         full_name: cus_fullname,
         phone: cus_phone,
         other_phone: cus_other_phone ? cus_other_phone : "",
@@ -427,7 +430,8 @@ const DeliveryInfoComponent = () => {
                     <Form.Item
                       name="order_type"
                       label="Order Type"
-                      rules={[{ required: true }]}
+                      value={orderType}
+                      rules={[{ required: orderType }]}
                       style={{
                         marginBottom: "50px",
                         textAlign: "left",
@@ -439,7 +443,7 @@ const DeliveryInfoComponent = () => {
                           ? "Regular Delivery Day"
                           : "Pick-up"}
                       </strong>
-                      <Radio.Group
+                      {/* <Radio.Group
                         onChange={onChangeOrderType}
                         value={orderType}
                         style={{ display: "none" }}
@@ -447,11 +451,13 @@ const DeliveryInfoComponent = () => {
                         <Radio style={radioStyle} value="regular_delivery">
                           Regular Delivery Day
                         </Radio>
-                        {/* <Radio style={radioStyle} value="sameday_delivery">Same Day Delivery</Radio> */}
+                        <Radio style={radioStyle} value="sameday_delivery">
+                          Same Day Delivery
+                        </Radio>
                         <Radio style={radioStyle} value="pickup">
                           Pick-up
                         </Radio>
-                      </Radio.Group>
+                      </Radio.Group> */}
                     </Form.Item>
 
                     {orderType === "regular_delivery" ||
