@@ -110,7 +110,6 @@
 .homePictures > .gutter-row > div > img {
   height: 425px;
 }
-
 @media screen and (max-width: 426px) {
   .homeRow {
     display: flex;
@@ -131,7 +130,6 @@
     margin: 64px 10px !important;
     transform: scale(0.8);
   }
-
   .homeTitle,
   .homeSubtitle {
     width: 100% !important;
@@ -145,11 +143,7 @@
     /* flex-direction: column; */
     transform: scale(0.8);
   }
-  .homeRowVid {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+
   .vidPlayerLeft {
     font-weight: 300 !important;
     font-size: 20px !important;
@@ -186,6 +180,12 @@
     /* margin: 64px 10px !important; */
     margin-left: -40px !important;
     transform: scale(0.9);
+  }
+  .homeRowVid {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
@@ -224,7 +224,7 @@
   .homeRowVid {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }
 
