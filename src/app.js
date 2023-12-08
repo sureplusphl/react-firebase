@@ -193,13 +193,13 @@ function App() {
                 >
                   <PhoneOutlined />{" "}
                   <a
-                    href="tel:09171445387"
+                    href="tel:+639626216453"
                     style={{
                       color: "white",
                     }}
                   >
                     {" "}
-                    +63 (917) 144 5387
+                    +63 (962) 621 6453
                   </a>
                 </Paragraph>
                 <Paragraph
