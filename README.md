@@ -10,3 +10,5 @@
 `npm run start` for development
 
 `npm run build` for production build
+
+/* Original Author: Ace Allawan */
